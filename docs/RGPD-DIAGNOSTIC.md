@@ -1,21 +1,21 @@
 # Diagnostic RGPD du chat SLM-Tavenel
 
-Statut : document de travail, pas une notice d'information pour les visiteurs et pas une attestation de conformite. Il decrit les elements visibles dans le depot local au 10 novembre 2026. Les traitements reels doivent etre verifies sur le VPS et aupres des prestataires avant toute declaration de conformite.
+Statut : document de travail, pas une attestation de conformite. Le responsable du traitement est indique par le createur comme etant lui-meme, en nom personnel. Le contact communique est `tavenel-tech@proton.me`. L'identite postale a publier et les bases legales restent a confirmer.
 
 ## Elements identifies dans le code
 
 - Les messages sont envoyes a l'API Transformers exploitee sur le VPS pour produire une reponse. Le code de l'API ne journalise pas le contenu des prompts dans une instruction explicite de journalisation. Les journaux du proxy, du systeme, du fournisseur VPS et les sauvegardes ne sont pas tous inspectables depuis ce depot.
-- Le service utilise des chats temporaires. Le depot indique que les messages ne sont pas enregistres dans l'historique Open WebUI. Cette affirmation ne prouve pas a elle seule leur suppression des journaux, memoires de navigateur ou sauvegardes.
+- Le responsable indique avoir verifie sur le VPS que la conversation temporaire disparait a la fermeture de l'onglet et n'est pas conservee dans l'historique, les sauvegardes ou les journaux controles lors de cette verification. Il faut maintenir ce comportement et verifier a nouveau apres les mises a jour.
 - Les preferences de langue et d'affichage de la trace d'inference peuvent etre enregistrees dans `localStorage` du navigateur.
-- Un ancien parcours invite utilise un identifiant de navigateur dans un cookie d'une duree de 30 jours et cree une identite invitee Open WebUI. La duree de vie des donnees associees dans la base Open WebUI n'est pas etablie par le depot.
+- Un ancien parcours invite et la configuration Caddy utilisent un identifiant de navigateur pour creer une identite invitee Open WebUI. Le parcours local definit un cookie de 30 jours, mais il faut confirmer que la configuration en production est identique. La duree de vie des donnees associees dans la base Open WebUI n'est pas etablie par le depot.
 - Le formulaire de commentaires ne transmet pas son contenu au serveur du chat. Il ouvre le partage natif du navigateur, copie le commentaire ou prepare un message vers l'adresse de contact. Si la personne choisit l'e-mail, son application de messagerie traite alors le contenu.
 - La configuration pointe vers un VPS Hostinger et le modele est execute localement. La localisation effective, les journaux du prestataire et les sous-traitants ulterieurs doivent etre confirmes dans les documents et reglages Hostinger.
 - La trace d'inference affiche des mesures et une empreinte tronquee du prompt. Le service ne s'en sert pas pour rechercher ou identifier un visiteur, mais une empreinte de texte peut rester une donnee pseudonyme dans certains contextes.
 
 ## Informations a confirmer avant de publier une notice RGPD
 
-1. Identite juridique exacte du responsable du traitement, adresse postale a publier et adresse de contact pour les droits.
-2. Finalites precises et base(s) legale(s) retenue(s) pour l'inference, la securite, les preferences locales et la gestion des demandes de droits.
+1. Adresse postale a publier (le responsable est Théophile Avenel, en nom personnel ; contact communique : `tavenel-tech@proton.me`).
+2. Finalites precises et base(s) legale(s) retenue(s) pour l'inference, la securite, les preferences locales et la gestion des demandes de droits. L'interet legitime est une piste a evaluer, pas une base deja validee.
 3. Donnees effectivement journalisees par Caddy, Open WebUI, Ubuntu et Hostinger, personnes qui y ont acces et durees de conservation/sauvegarde associees.
 4. Suppression effective des comptes invites, notes, parametres et autres donnees Open WebUI, y compris lorsque le cookie expire ou que l'utilisateur ferme l'onglet.
 5. Emplacement de traitement et de sauvegarde du VPS, conditions contractuelles de sous-traitance de Hostinger et liste des sous-traitants pertinents.
