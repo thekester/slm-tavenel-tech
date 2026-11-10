@@ -1,0 +1,79 @@
+# Private owner route. Reach it only through an SSH tunnel to 127.0.0.1:3012.
+http://localhost:3012 {
+	bind 127.0.0.1
+	handle /static/loader.js {
+		root * /srv/www/slm-privacy-ui
+		rewrite * /loader.js
+		header Cache-Control "no-store"
+		file_server
+	}
+	handle /static/custom.css {
+		root * /srv/www/slm-privacy-ui
+		rewrite * /custom.css
+		header Cache-Control "no-store"
+		file_server
+	}
+	@authenticatedRoot {
+		path /
+		header_regexp Cookie token=
+	}
+	@publicRoot path /
+	handle @authenticatedRoot {
+		reverse_proxy 127.0.0.1:3010 {
+			header_up X-Tavenel-Guest-Email {env.WEBUI_ADMIN_EMAIL}
+			header_up X-Tavenel-Guest-Name "Admin Tavenel"
+			header_up X-Tavenel-Guest-Role admin
+		}
+	}
+	handle @publicRoot {
+		root * /srv/www/slm-guest
+		header Cache-Control "no-store"
+		file_server
+	}
+	reverse_proxy 127.0.0.1:3010 {
+		header_up X-Tavenel-Guest-Email {env.WEBUI_ADMIN_EMAIL}
+		header_up X-Tavenel-Guest-Name "Admin Tavenel"
+		header_up X-Tavenel-Guest-Role admin
+	}
+}
+
+# Public, no-login Open WebUI. Caddy forces every visitor into a restricted guest account.
+slm.tavenel.tech {
+	encode gzip
+	header Strict-Transport-Security "max-age=31536000"
+	handle /static/loader.js {
+		root * /srv/www/slm-privacy-ui
+		rewrite * /loader.js
+		header Cache-Control "no-store"
+		file_server
+	}
+	handle /static/custom.css {
+		root * /srv/www/slm-privacy-ui
+		rewrite * /custom.css
+		header Cache-Control "no-store"
+		file_server
+	}
+	@authenticatedRoot {
+		path /
+		header_regexp Cookie token=
+	}
+	@publicRoot path /
+	handle @authenticatedRoot {
+		reverse_proxy 127.0.0.1:3010 {
+			header_up X-Tavenel-Guest-Email guest-{http.request.cookie.tavenel_guest}@example.invalid
+			header_up X-Tavenel-Guest-Name Visiteur
+			header_up X-Tavenel-Guest-Role user
+		}
+	}
+	handle @publicRoot {
+		root * /srv/www/slm-guest
+		header Cache-Control "no-store"
+		file_server
+	}
+	reverse_proxy 127.0.0.1:3010 {
+		header_up X-Tavenel-Guest-Email guest-{http.request.cookie.tavenel_guest}@example.invalid
+		header_up X-Tavenel-Guest-Name Visiteur
+		header_up X-Tavenel-Guest-Role user
+	}
+}
+
