@@ -18,6 +18,7 @@ The SLM-Tavenel releases are experimental base models, not instruction-tuned ass
 - `compose.yaml`: Docker Compose services and resource caps.
 - `Caddyfile.snippet`: reverse-proxy configuration example.
 - `README-HOSTINGER.md`: Hostinger MCP connection instructions.
+- `docs/RGPD-DIAGNOSTIC.md`: privacy data-flow inventory and open verification items; not a compliance statement.
 - `.env.example`: names of locally required configuration variables, with no populated secrets.
 
 ## Resource safeguards
