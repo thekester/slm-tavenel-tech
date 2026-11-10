@@ -175,6 +175,10 @@ details.tavenel-inference-trace > summary { color: #a8dff8; cursor: pointer; fon
 .tavenel-privacy-transparency .tavenel-privacy-art { display: none; }
 .tavenel-privacy-transparency .tavenel-privacy-eyebrow { margin-top: 8px; }
 .tavenel-privacy-transparency .tavenel-privacy-dialog h2 { margin-top: 8px; }
+.tavenel-privacy-personaldata { width: min(680px, 100%); }
+.tavenel-privacy-personaldata .tavenel-privacy-art { display: none; }
+.tavenel-privacy-personaldata .tavenel-privacy-eyebrow { margin-top: 8px; }
+.tavenel-privacy-personaldata .tavenel-privacy-dialog h2 { margin-top: 8px; }
 .tavenel-transparency-intro { margin: 0 0 10px; padding: 11px 12px; border-radius: 13px; background: #171717; color: var(--tp-muted); font-size: 13px; }
 .tavenel-model-provenance { margin: 7px 0; overflow: hidden; border: 1px solid var(--tp-border); border-radius: 13px; background: #191919; }
 .tavenel-model-provenance summary { padding: 11px 13px; color: #fff; cursor: pointer; font-size: 13px; font-weight: 650; }
