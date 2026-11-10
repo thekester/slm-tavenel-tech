@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 13390)
-Total output lines: 396
-
 (() => {
   const mount = () => {
     if (!document.body || document.getElementById("tavenel-privacy-root")) return;
@@ -195,7 +192,27 @@ Total output lines: 396
     const englishViews = {
       protection: {
         title: "All conversations are temporary",
-        cards: `<article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">♙</span><div><h3>Guest session</h3><p>No account or password is required. A random browser ID keeps your settings separate from other visitors’.</p></div></article><article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">▤</span><div><h3>No chat history</h3><p>Temporary chat is enforced. Conversations are not saved to Open WebUI history and disappear when you close the tab.</p></div></article><article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">⌂</span><div><h3>Processing on Tavenel’s VPS</h3><p>Messages are processed on this VPS by the available models, including a third-party model hosted locall…1390 tokens truncated…s="tavenel-privacy-done tavenel-feedback-submit">Share my feedback</button><a class="tavenel-feedback-email" href="mailto:slm-tavenel-tech@proton.me">Email slm-tavenel-tech@proton.me</a><p class="tavenel-feedback-status" role="status" aria-live="polite"></p>`,
+        cards: `<article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">♙</span><div><h3>Guest session</h3><p>No account or password is required. A random browser ID keeps your settings separate from other visitors’.</p></div></article><article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">▤</span><div><h3>No chat history</h3><p>Temporary chat is enforced. Conversations are not saved to Open WebUI history and disappear when you close the tab.</p></div></article><article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">⌂</span><div><h3>Processing on Tavenel’s VPS</h3><p>Messages are processed on this VPS by the available models, including a third-party model hosted locally. They are not sent to an external inference provider.</p></div></article><article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">◉</span><div><h3>Your messages are not used for training</h3><p>The service runs inference and does not retrain the SLMs on conversations.</p></div></article><article class="tavenel-privacy-card tavenel-privacy-card-note"><span class="tavenel-privacy-card-icon">ⓘ</span><div><h3>Technical logs</h3><p>Server logs may contain IP addresses and request paths for security and troubleshooting. Access logs do not contain prompt text.</p></div></article>`,
+        done: "Got it"
+      },
+      personaldata: {
+        title: "Personal data and your rights",
+        cards: `<article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">♙</span><div><h3>Controller and contact</h3><p>The service is operated by Théophile Avenel in a personal capacity. Contact: <a href="mailto:tavenel-tech@proton.me">tavenel-tech@proton.me</a>.</p></div></article>
+          <article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">◎</span><div><h3>Data and purposes</h3><p>Your prompt and the generated answer are processed to provide the chat. A random guest identifier separates browser sessions; language and trace-display preferences may be stored in browser local storage. Connection metadata such as IP address, time and request path may be processed for operating and securing the service.</p></div></article>
+          <article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">⌂</span><div><h3>Processing and recipients</h3><p>Prompts are processed on the Hostinger VPS by the selected locally hosted model, not sent to an external inference API. Hostinger provides the hosting infrastructure. If you choose to email feedback, your mail provider processes that message.</p></div></article>
+          <article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">▤</span><div><h3>Retention</h3><p>Chat content is temporary: it is not kept in chat history and is removed when the tab closes, as checked on the VPS. The local configuration sets the guest identifier cookie to 30 days; confirm that production still uses this duration. The associated guest-account and technical-log retention periods have not yet been confirmed. Browser preferences remain until you clear this site's local data.</p></div></article>
+          <article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">⚖</span><div><h3>Legal basis</h3><p>The controller has not yet confirmed the legal basis for each purpose. The service is intended to answer chat requests and protect the platform; the applicable basis must be determined and documented before this notice is final.</p></div></article>
+          <article class="tavenel-privacy-card tavenel-privacy-card-note"><span class="tavenel-privacy-card-icon">ⓘ</span><div><h3>Your rights</h3><p>You may contact the controller to exercise the rights that apply to your situation, including access, rectification, erasure, restriction and objection. You can also lodge a complaint with the <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener noreferrer">CNIL</a>. Do not enter sensitive or confidential information in this public experimental chat.</p></div></article>`,
+        done: "Close"
+      },
+      preferences: {
+        title: "Preferences",
+        cards: `<article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">▤</span><div><h3>Chat history</h3><p>Temporary mode is enabled and enforced. Chats are not saved.</p></div></article><article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">♙</span><div><h3>Guest session</h3><p>A random ID separates this browser’s settings. It expires after 30 days.</p></div></article><article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">⌂</span><div><h3>Available models</h3><p>The selector contains the five SLM-Tavenel models and the clearly identified external TinyStories model.</p></div></article><article class="tavenel-privacy-card"><span class="tavenel-privacy-card-icon">◉</span><div><h3>Trace after each answer</h3><label class="tavenel-trace-toggle-label"><input class="tavenel-trace-toggle" type="checkbox"> Show inference trace and estimated impact</label></div></article>`,
+        done: "Done"
+      },
+      feedback: {
+        title: "Quack, quack! We’re glad you’re here.",
+        cards: `<p class="tavenel-feedback-prompt">Would you like to tell us more?</p><div class="tavenel-feedback-options" role="group" aria-label="Feedback topics"><button type="button" class="tavenel-feedback-chip">Good privacy policy</button><button type="button" class="tavenel-feedback-chip">Relevant information</button><button type="button" class="tavenel-feedback-chip">Easy access to different AI models</button><button type="button" class="tavenel-feedback-chip">Useful</button><button type="button" class="tavenel-feedback-chip">Suggest a feature</button><button type="button" class="tavenel-feedback-chip">Something else</button></div><label class="tavenel-feedback-label" for="tavenel-feedback-text">Your comments</label><textarea id="tavenel-feedback-text" class="tavenel-feedback-text" rows="3" maxlength="2000" placeholder="Tell us what you think…"></textarea><p class="tavenel-feedback-privacy">Nothing is sent to the server. You can share your comments with your preferred app or prepare an email.</p><button type="button" class="tavenel-privacy-done tavenel-feedback-submit">Share my feedback</button><a class="tavenel-feedback-email" href="mailto:slm-tavenel-tech@proton.me">Email slm-tavenel-tech@proton.me</a><p class="tavenel-feedback-status" role="status" aria-live="polite"></p>`,
         done: "Close"
       },
       transparency: {
@@ -376,4 +393,3 @@ Total output lines: 396
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount, { once: true });
   else mount();
 })();
-
