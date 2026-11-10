@@ -7,6 +7,7 @@ The chat interface uses [Open WebUI](https://github.com/open-webui/open-webui) w
 ## Models
 
 - [SLM-Tavenel models](https://huggingface.co/athenista)
+- [SLM-Tavenel Story 935K](https://huggingface.co/athenista/slm-tavenel-story-935k)
 - [Third-party TinyStories model](https://huggingface.co/shibatch/tiny1m)
 
 The SLM-Tavenel releases are experimental base models, not instruction-tuned assistants. Their outputs can be incoherent or inaccurate. Model cards describe their data provenance, declared licenses, and known review limitations.
@@ -36,4 +37,3 @@ Never commit `.env`, passwords, API keys, SSH keys, or private certificates. The
 ## Maintainer
 
 Théophile Avenel develops and publishes these experimental language models and documents their data sources, declared licenses, and limitations. For questions or discussion, contact him on [LinkedIn](https://www.linkedin.com/in/theophile-avenel/) or by email at [slm-tavenel-tech@proton.me](mailto:slm-tavenel-tech@proton.me).
-
