@@ -23,8 +23,18 @@ MODEL_SPECS = {
     "athenista/slm-tavenel-25m": ("b0b5d762a500c8b14ccc9b7ddcddab6d5e49ec05", 1024, None),
     "athenista/slm-tavenel-25m-hplt-10pct": ("98904f24de85ddbc5c9c243a695e3afe79930589", 1024, None),
     "athenista/slm-tavenel-124m": ("877392873e7e46c0e5946d6e943ce4e90f71a49f", 2048, None),
+    # Native Llama architecture; learned training window is 256 tokens.
+    "athenista/slm-tavenel-story-935k": ("9e9ba49e998ac1e536731798d337d1c2f7c21858", 256, None),
     # Third-party TinyStories Llama2 model; HF files live under hf/.
     "shibatch/tiny1m": ("fdacad8ff9dc27bd72c77d3684075a494be1ba11", 256, "hf"),
+}
+
+TRUST_REMOTE_CODE_MODELS = {
+    "athenista/slm-tavenel-1m",
+    "athenista/slm-tavenel-10m",
+    "athenista/slm-tavenel-25m",
+    "athenista/slm-tavenel-25m-hplt-10pct",
+    "athenista/slm-tavenel-124m",
 }
 
 # The VPS exposes CPU time but no hardware energy meter. These deliberately
@@ -133,7 +143,7 @@ def get_model(model_id: str):
         revision, _, subfolder = MODEL_SPECS[model_id]
         # Pin each model to an exact Hugging Face commit; some repos store HF
         # Transformers files in a subfolder.
-        load_options = {"revision": revision, "trust_remote_code": model_id.startswith("athenista/")}
+        load_options = {"revision": revision, "trust_remote_code": model_id in TRUST_REMOTE_CODE_MODELS}
         if subfolder:
             load_options["subfolder"] = subfolder
         tokenizer_options = {**load_options, "use_fast": model_id != "shibatch/tiny1m"}
@@ -450,4 +460,3 @@ def chat_completions(request: ChatCompletionRequest):
             "total_tokens": prompt_tokens + completion_tokens,
         },
     }
-
