@@ -1,0 +1,208 @@
+#tavenel-privacy-root {
+  --tp-bg: #212121;
+  --tp-card: #171717;
+  --tp-text: #f5f5f5;
+  --tp-muted: #c2c3ca;
+  --tp-blue: #80c7f1;
+  --tp-border: rgba(255,255,255,.08);
+  color: var(--tp-text);
+  font: 14px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.tavenel-privacy-trigger {
+  position: fixed;
+  z-index: 80;
+  right: 18px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 13px;
+  border: 1px solid var(--tp-border);
+  border-radius: 13px;
+  background: rgba(35,35,35,.96);
+  color: var(--tp-text);
+  box-shadow: 0 8px 28px rgba(0,0,0,.28);
+  cursor: pointer;
+  font: inherit;
+}
+
+.tavenel-privacy-trigger:hover,
+.tavenel-privacy-menu-item:hover { background: #303030; }
+.tavenel-privacy-trigger-icon { font-size: 20px; color: var(--tp-blue); }
+.tavenel-privacy-trigger-hint { margin-left: 5px; color: #dedede; }
+
+.tavenel-privacy-menu {
+  position: fixed;
+  z-index: 81;
+  right: 18px;
+  bottom: 66px;
+  width: min(330px, calc(100vw - 32px));
+  padding: 8px;
+  border: 1px solid var(--tp-border);
+  border-radius: 18px;
+  background: var(--tp-bg);
+  box-shadow: 0 14px 42px rgba(0,0,0,.42);
+}
+
+.tavenel-privacy-menu[hidden],
+.tavenel-privacy-backdrop[hidden] { display: none !important; }
+.tavenel-privacy-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--tp-text);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.tavenel-privacy-menu-item > span:first-child { width: 18px; color: var(--tp-blue); font-size: 18px; text-align: center; }
+
+.tavenel-privacy-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0,0,0,.68);
+  backdrop-filter: blur(5px);
+}
+
+.tavenel-privacy-dialog {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: min(90vh, 780px);
+  overflow: auto;
+  padding: 28px 24px 18px;
+  border: 1px solid var(--tp-border);
+  border-radius: 24px;
+  background: #222;
+  color: var(--tp-text);
+  box-shadow: 0 22px 70px rgba(0,0,0,.5);
+  outline: none;
+}
+
+.tavenel-privacy-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #c9c9c9;
+  cursor: pointer;
+  font-size: 25px;
+}
+.tavenel-privacy-close:hover { background: rgba(255,255,255,.08); }
+.tavenel-privacy-art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  color: #8bd6f6;
+  font-size: 70px;
+  line-height: 1;
+}
+.tavenel-privacy-art b { margin-left: -23px; margin-top: -34px; color: #ffd477; font-size: 24px; }
+.tavenel-privacy-art i { margin-left: -15px; margin-top: 36px; color: #c79cff; font-size: 25px; }
+.tavenel-privacy-eyebrow { margin: 0 0 4px; color: var(--tp-blue); text-align: center; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.tavenel-privacy-dialog h2 { margin: 4px 25px 18px; text-align: center; font-size: clamp(20px, 4vw, 25px); font-weight: 620; line-height: 1.2; }
+.tavenel-language-switch { display: flex; justify-content: flex-end; gap: 4px; margin: -8px 0 10px; }
+.tavenel-language-switch button { min-width: 38px; padding: 4px 8px; border: 1px solid var(--tp-border); border-radius: 999px; background: #303030; color: var(--tp-muted); cursor: pointer; font: inherit; font-size: 11px; }
+.tavenel-language-switch button[aria-pressed="true"] { border-color: var(--tp-blue); color: #fff; }
+.tavenel-privacy-cards { display: grid; gap: 2px; padding: 7px; border-radius: 18px; background: var(--tp-card); }
+.tavenel-privacy-card { display: grid; grid-template-columns: 25px 1fr; gap: 10px; padding: 10px 9px; }
+.tavenel-privacy-card-icon { color: #f2f2f2; font-size: 18px; line-height: 1.3; text-align: center; }
+.tavenel-privacy-card h3 { margin: 0 0 2px; color: #fff; font-size: 14px; font-weight: 600; }
+.tavenel-privacy-card p { margin: 0; color: var(--tp-muted); font-size: 13px; line-height: 1.42; }
+.tavenel-privacy-card a,
+.tavenel-privacy-card a:visited { color: var(--tp-blue); text-decoration: underline; text-underline-offset: 2px; }
+.tavenel-privacy-card a:hover { color: #b8e5ff; }
+.tavenel-privacy-card a:focus-visible { border-radius: 2px; outline: 2px solid var(--tp-blue); outline-offset: 2px; }
+.tavenel-privacy-card-note { border-top: 1px solid var(--tp-border); }
+.tavenel-privacy-done {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--tp-blue);
+  color: #071521;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+}
+.tavenel-privacy-done:hover { filter: brightness(1.06); }
+
+.tavenel-trace-toggle-label { display: flex; align-items: center; gap: 8px; color: var(--tp-muted); font-size: 13px; cursor: pointer; }
+.tavenel-trace-toggle { width: 16px; height: 16px; margin: 0; accent-color: var(--tp-blue); }
+body:not(.tavenel-show-inference-traces) details.tavenel-inference-trace { display: none !important; }
+details.tavenel-inference-trace { margin: 1.2rem 0; padding: .8rem 1rem; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: rgba(255,255,255,.035); font-size: .9em; }
+details.tavenel-inference-trace > summary { color: #a8dff8; cursor: pointer; font-weight: 600; }
+.tavenel-inference-trace-body { margin-top: .75rem; color: #c6c8cd; }
+.tavenel-inference-trace-body p { margin: .35rem 0; }
+.tavenel-inference-trace-body b { color: #f4f4f5; }
+.tavenel-model-warning { box-sizing: border-box; align-self: center; width: min(760px, calc(100% - 32px)); margin: 0 auto 12px; padding: 10px 14px; border-left: 3px solid #80c7f1; border-radius: 8px; background: rgba(128,199,241,.08); color: #c9cbd0; font-size: 13px; line-height: 1.45; }
+
+.tavenel-privacy-feedback { width: min(520px, 100%); }
+.tavenel-privacy-feedback .tavenel-privacy-art { display: none; }
+.tavenel-privacy-feedback .tavenel-privacy-eyebrow { margin-top: 8px; }
+.tavenel-privacy-feedback .tavenel-privacy-dialog h2 { margin-top: 8px; text-align: left; }
+.tavenel-privacy-feedback .tavenel-privacy-cards { display: block; padding: 0; background: transparent; }
+.tavenel-feedback-prompt { margin: -7px 0 16px; color: var(--tp-muted); font-size: 15px; }
+.tavenel-feedback-options { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.tavenel-feedback-chip { min-height: 35px; padding: 6px 12px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; background: #393939; color: #fff; cursor: pointer; font: inherit; font-size: 13px; font-weight: 600; }
+.tavenel-feedback-chip:hover { background: #484848; }
+.tavenel-feedback-chip.is-selected { border-color: var(--tp-blue); background: #31556b; }
+.tavenel-feedback-label { display: block; margin: 8px 0 5px; color: var(--tp-muted); font-size: 13px; }
+.tavenel-feedback-text { box-sizing: border-box; width: 100%; min-height: 82px; resize: vertical; padding: 11px 12px; border: 1px solid rgba(255,255,255,.14); border-radius: 13px; background: #181818; color: var(--tp-text); font: inherit; }
+.tavenel-feedback-text:focus { outline: 2px solid var(--tp-blue); outline-offset: 1px; }
+.tavenel-feedback-privacy { margin: 8px 0; color: var(--tp-muted); font-size: 12px; }
+.tavenel-feedback-email { display: block; margin: 9px auto 0; color: var(--tp-blue); text-align: center; font-size: 13px; text-decoration: underline; text-underline-offset: 2px; }
+.tavenel-feedback-status { min-height: 20px; margin: 8px 0 0; color: var(--tp-blue); font-size: 13px; }
+
+.tavenel-privacy-transparency { width: min(600px, 100%); }
+.tavenel-privacy-transparency .tavenel-privacy-art { display: none; }
+.tavenel-privacy-transparency .tavenel-privacy-eyebrow { margin-top: 8px; }
+.tavenel-privacy-transparency .tavenel-privacy-dialog h2 { margin-top: 8px; }
+.tavenel-transparency-intro { margin: 0 0 10px; padding: 11px 12px; border-radius: 13px; background: #171717; color: var(--tp-muted); font-size: 13px; }
+.tavenel-model-provenance { margin: 7px 0; overflow: hidden; border: 1px solid var(--tp-border); border-radius: 13px; background: #191919; }
+.tavenel-model-provenance summary { padding: 11px 13px; color: #fff; cursor: pointer; font-size: 13px; font-weight: 650; }
+.tavenel-model-provenance summary::marker { color: var(--tp-blue); }
+.tavenel-model-provenance[open] summary { border-bottom: 1px solid var(--tp-border); }
+.tavenel-model-provenance-body { padding: 10px 13px 13px; color: var(--tp-muted); font-size: 12px; line-height: 1.48; }
+.tavenel-model-provenance-body p { margin: 0 0 8px; }
+.tavenel-model-provenance-body b { color: #fff; }
+.tavenel-model-provenance-body a { color: var(--tp-blue); text-decoration: underline; text-underline-offset: 2px; }
+
+@media (max-width: 1100px) {
+  .tavenel-privacy-trigger {
+    top: calc(env(safe-area-inset-top, 0px) + 58px);
+    right: 12px;
+    bottom: auto;
+  }
+  .tavenel-privacy-menu {
+    top: calc(env(safe-area-inset-top, 0px) + 108px);
+    right: 12px;
+    bottom: auto;
+    max-height: calc(100dvh - env(safe-area-inset-top, 0px) - 124px);
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .tavenel-privacy-dialog { padding: 22px 14px 14px; border-radius: 20px; }
+  .tavenel-privacy-art { height: 78px; font-size: 54px; }
+  .tavenel-privacy-card { padding: 9px 5px; }
+}
+
