@@ -1,0 +1,50 @@
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:v0.13.3
+    restart: unless-stopped
+    depends_on:
+      - slm-api
+    ports:
+      - "127.0.0.1:3010:8080"
+    environment:
+      WEBUI_URL: https://slm.tavenel.tech
+      DEFAULT_PROMPT_SUGGESTIONS: '[{"title":["Say hello","in one sentence"],"content":"Say hello simply in one sentence."},{"title":["Continue a short phrase","The cat sleeps in the garden"],"content":"Continue this sentence with a short sequence of words: The cat sleeps in the garden."}]'
+      WEBUI_SECRET_KEY: ${WEBUI_SECRET_KEY:?Set WEBUI_SECRET_KEY in .env}
+      WEBUI_AUTH: "true"
+      WEBUI_SESSION_COOKIE_SECURE: "true"
+      WEBUI_AUTH_TRUSTED_EMAIL_HEADER: X-Tavenel-Guest-Email
+      WEBUI_AUTH_TRUSTED_NAME_HEADER: X-Tavenel-Guest-Name
+      WEBUI_AUTH_TRUSTED_ROLE_HEADER: X-Tavenel-Guest-Role
+      WEBUI_ADMIN_EMAIL: ${WEBUI_ADMIN_EMAIL:?Set WEBUI_ADMIN_EMAIL in .env}
+      WEBUI_ADMIN_PASSWORD: ${WEBUI_ADMIN_PASSWORD:?Set WEBUI_ADMIN_PASSWORD in .env}
+      WEBUI_ADMIN_NAME: Admin
+      OPENAI_API_BASE_URL: http://slm-api:8000/v1
+      OPENAI_API_KEY: ${MODEL_API_KEY:?Set MODEL_API_KEY in .env}
+      CORS_ALLOW_ORIGIN: https://slm.tavenel.tech
+      ENABLE_COMMUNITY_SHARING: "false"
+    volumes:
+      - open-webui-data:/app/backend/data
+
+  slm-api:
+    build: ./model-api
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3011:8000"
+    environment:
+      MODEL_API_KEY: ${MODEL_API_KEY:?Set MODEL_API_KEY in .env}
+      HF_HOME: /var/cache/huggingface
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      OMP_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
+      MAX_IN_FLIGHT_GENERATIONS: "32"
+      HOST_RESOURCE_LIMIT_PERCENT: "80"
+    volumes:
+      - hf-model-cache:/var/cache/huggingface
+    mem_limit: 4g
+    cpus: 1.2
+
+volumes:
+  open-webui-data:
+  hf-model-cache:
+
