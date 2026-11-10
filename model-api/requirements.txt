@@ -1,0 +1,2 @@
+# Dependencies are installed explicitly in the Dockerfile to use the CPU wheel index for PyTorch.
+
