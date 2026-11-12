@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Protocole et état des essais en anglais des petits modèles de langage SLM-Tavenel, TinyStories et JEPA.">
+  <meta name="theme-color" content="#10151f">
+  <title>Petits modèles de langage à l’essai en anglais · SLM-Tavenel</title>
+  <style>
+    :root{color-scheme:dark;--bg:#10151f;--panel:#171f2d;--panel2:#1d2939;--line:#2b3a4e;--ink:#f1f5fb;--muted:#b4c1d3;--blue:#8bd7ff;--green:#91e0c1;--amber:#ffd27a;--red:#ffb6a8;--radius:18px;--max:1080px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:72px}body{margin:0;background:radial-gradient(ellipse at 78% -15%,#213751 0,transparent 42%),var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#c2ecff}a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:3px}.wrap{width:min(var(--max),calc(100% - 36px));margin:auto}
+    nav{position:sticky;top:0;z-index:5;background:#10151feF;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}nav .wrap{display:flex;gap:8px;overflow:auto;padding:10px 0;white-space:nowrap}nav a{text-decoration:none;padding:7px 12px;border-radius:999px;color:var(--muted);font-size:14px}nav a:hover{background:var(--panel2);color:var(--ink)}
+    header{padding:70px 0 46px}.eyebrow{color:var(--blue);font-size:13px;font-weight:750;letter-spacing:.12em;text-transform:uppercase}h1,h2,h3{line-height:1.15;letter-spacing:-.025em}h1{font-size:clamp(2.5rem,7vw,5rem);max-width:850px;margin:14px 0 18px}header p{max-width:720px;color:var(--muted);font-size:clamp(17px,2.2vw,21px)}.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.pill{border:1px solid var(--line);background:#182333;border-radius:999px;padding:7px 12px;color:var(--muted);font-size:13px}
+    main section{padding:26px 0 18px}h2{font-size:clamp(1.75rem,4vw,2.5rem);margin:0 0 12px}.lead{max-width:760px;color:var(--muted);margin:0 0 20px}.notice{border:1px solid #735927;border-left:4px solid var(--amber);background:#292417;border-radius:var(--radius);padding:18px 20px;color:#f7e8c7}.notice strong{color:#ffe1a3}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}.card{border:1px solid var(--line);background:linear-gradient(145deg,var(--panel),#141b27);border-radius:var(--radius);padding:20px}.card h3{margin:2px 0 8px;font-size:19px}.card p{color:var(--muted);margin:7px 0}.tag{display:inline-block;border:1px solid #3a526d;color:#c6eaff;background:#1c3042;border-radius:999px;font-size:12px;font-weight:700;padding:3px 9px}.tag.external{border-color:#6b5b34;color:#ffe0a0;background:#30291d}.tag.other{border-color:#4b426d;color:#d2c5ff;background:#272237}
+    .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}table{border-collapse:collapse;width:100%;min-width:760px}th,td{text-align:left;vertical-align:top;padding:13px 15px;border-bottom:1px solid var(--line)}th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:#1b2635}tbody tr:last-child td{border-bottom:0}td small{display:block;color:var(--muted);font-size:13px}td.status{color:var(--amber);font-weight:700}
+    .steps{counter-reset:step}.step{position:relative;padding-left:58px}.step:before{counter-increment:step;content:counter(step);position:absolute;left:17px;top:17px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#203d55;color:var(--blue);font-weight:800}.step p{margin-bottom:0}.metric{font-size:24px;font-weight:800;color:var(--green)}.empty{padding:24px;border:1px dashed #50647c;border-radius:var(--radius);text-align:center;background:#151e2b}.empty b{display:block;font-size:20px;color:var(--amber)}.empty p{max-width:710px;margin:8px auto 0;color:var(--muted)}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.button{display:inline-block;text-decoration:none;border-radius:999px;padding:10px 16px;font-weight:750;border:1px solid #5b8bac;background:#17354a}.button.secondary{border-color:var(--line);background:var(--panel);color:var(--ink)}.caveat{color:var(--muted);font-size:14px}.source{border-top:1px solid var(--line);margin-top:30px;padding:25px 0 48px;color:var(--muted);font-size:14px}footer{border-top:1px solid var(--line);padding:24px 0 45px;color:var(--muted);font-size:14px}
+    @media(max-width:600px){.wrap{width:min(var(--max),calc(100% - 24px))}header{padding:48px 0 30px}.card{padding:17px}.meta{gap:7px}.pill{font-size:12px}nav .wrap{width:100%;padding-left:12px;padding-right:12px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <nav aria-label="Navigation de l’analyse"><div class="wrap">
+    <a href="#cadre">Cadre</a><a href="#modeles">Modèles</a><a href="#protocole">Protocole proposé</a><a href="#resultats">Résultats</a><a href="#limites">Limites</a>
+  </div></nav>
+  <header><div class="wrap">
+    <div class="eyebrow">SLM-Tavenel · analyse expérimentale</div>
+    <h1>Petits modèles de langage à l’essai en anglais</h1>
+    <p>Quels comportements peut-on observer avec des modèles de moins de 125 millions de paramètres ? Cette page décrit les modèles disponibles et un protocole de comparaison reproductible. Elle sépare les modèles de texte généralistes des modèles entraînés sur des récits.</p>
+    <div class="meta"><span class="pill">État : protocole à exécuter</span><span class="pill">Inférence sur CPU · VPS Hostinger, Paris</span><span class="pill">Révisions Hugging Face épinglées</span></div>
+  </div></header>
+  <main class="wrap">
+    <section id="cadre">
+      <div class="notice"><strong>Pas de scores publiés pour l’instant.</strong> Aucun passage d’un jeu de questions commun, répété et corrigé n’a été enregistré pour les modèles listés ci-dessous. Je ne présente donc ni classement ni taux de réussite inventés. Les fiches et traces d’inférence permettent de préparer une comparaison vérifiable.</div>
+      <div class="actions"><a class="button" href="https://slm.tavenel.tech/">Essayer les modèles dans le chat ↗</a><a class="button secondary" href="https://huggingface.co/athenista">Voir les modèles SLM-Tavenel ↗</a></div>
+    </section>
+
+    <section id="modeles">
+      <h2>Modèles inclus</h2>
+      <p class="lead">Les modèles de base ne sont pas entraînés à suivre des consignes. Leurs résultats à des questions formulées comme pour un assistant ne mesurent donc pas uniquement leur connaissance ou leur qualité linguistique.</p>
+      <div class="table-scroll"><table>
+        <thead><tr><th>Modèle</th><th>Paramètres</th><th>Fenêtre configurée dans le service</th><th>Essai pertinent</th><th>Résultats</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://huggingface.co/athenista/slm-tavenel-1m">SLM-Tavenel 1M ↗</a></td><td>1,18 M</td><td>1 024 tokens</td><td>Complétion de texte court, français et anglais</td><td class="status">À mesurer</td></tr>
+          <tr><td><a href="https://huggingface.co/athenista/slm-tavenel-10m">SLM-Tavenel 10M ↗</a></td><td>9,98 M</td><td>1 024 tokens</td><td>Complétion de texte court, français et anglais</td><td class="status">À mesurer</td></tr>
+          <tr><td><a href="https://huggingface.co/athenista/slm-tavenel-25m">SLM-Tavenel 25M ↗</a></td><td>25,7 M</td><td>1 024 tokens</td><td>Complétion de texte court, français et anglais</td><td class="status">À mesurer</td></tr>
+          <tr><td><a href="https://huggingface.co/athenista/slm-tavenel-25m-hplt-10pct">SLM-Tavenel 25M HPLT 10% ↗</a></td><td>25,7 M</td><td>1 024 tokens</td><td>Comparer prudemment à la lignée 25M</td><td class="status">À mesurer</td></tr>
+          <tr><td><a href="https://huggingface.co/athenista/slm-tavenel-124m">SLM-Tavenel 124M ↗</a></td><td>124 M</td><td>2 048 tokens</td><td>Complétion de texte court, français et anglais</td><td class="status">À mesurer</td></tr>
+          <tr><td><a href="https://huggingface.co/athenista/slm-tavenel-story-935k">SLM-Tavenel Story 935K ↗</a><small>Modèle spécialisé dans la continuation de récits en anglais</small></td><td>935 040</td><td>256 tokens appris</td><td>Continuation de récits uniquement</td><td class="status">À mesurer</td></tr>
+          <tr><td><a href="https://huggingface.co/shibatch/tiny1m">TinyStories Llama2 1M ↗</a><small><span class="tag external">Modèle tiers</span></small></td><td>896 256</td><td>256 tokens</td><td>Continuation de récits uniquement</td><td class="status">À mesurer</td></tr>
+        </tbody>
+      </table></div>
+      <p class="caveat">Les fenêtres indiquées sont les limites appliquées par le service, sauf mention « tokens appris » pour Story 935K. Elles ne constituent pas une mesure de qualité. Les révisions exactes chargées sont visibles dans la trace après une réponse.</p>
+      <div class="card"><h3>Le JEPA 124M est évalué à part</h3><p>Le JEPA produit des représentations vectorielles de textes. Il ne génère pas de réponse et ne doit pas figurer dans un classement de modèles génératifs.</p><a href="https://slm.tavenel.tech/jepa">Ouvrir le laboratoire JEPA ↗</a></div>
+    </section>
+
+    <section id="protocole">
+      <h2>Protocole proposé</h2>
+      <p class="lead">Le protocole s’inspire du principe de comparaison français/anglais de l’article cité en référence, tout en séparant les usages des modèles de base et des modèles d’histoires.</p>
+      <div class="grid steps">
+        <article class="card step"><h3>Deux pistes séparées</h3><p>Comparer les cinq modèles SLM-Tavenel généralistes entre eux. Comparer Story 935K et TinyStories seulement sur des continuations d’histoires en anglais.</p></article>
+        <article class="card step"><h3>Prompts appariés</h3><p>Préparer le même ensemble de tâches courtes en français et en anglais. Publier les textes, références attendues, règles de correction et révisions avant d’interpréter les scores.</p></article>
+        <article class="card step"><h3>Réglages identiques</h3><p>Fixer la température, top-p, limite de sortie et format de prompt. Garder les limites de tokens compatibles avec la plus petite fenêtre de chaque piste.</p></article>
+        <article class="card step"><h3>Répétitions et correction</h3><p>Répéter chaque essai cinq fois. Rapporter les réponses brutes, les échecs, les réponses hors langue et les corrections humaines, sans fusionner ces catégories.</p></article>
+        <article class="card step"><h3>Mesures distinctes</h3><p>Présenter exactitude quand une réponse de référence existe, cohérence des continuations, latence, tokens générés et temps CPU. Ne pas réduire ces dimensions à un score unique.</p></article>
+        <article class="card step"><h3>Impact estimé, séparé</h3><p>Afficher l’estimation énergétique à côté des résultats. Elle repose sur le temps CPU et une hypothèse de puissance, pas sur un compteur électrique du VPS.</p></article>
+      </div>
+    </section>
+
+    <section id="resultats">
+      <h2>Résultats</h2>
+      <div class="empty"><b>Mesures comparatives non disponibles</b><p>Les modèles peuvent être essayés individuellement dans le chat. Pour publier un tableau de scores, il faut d’abord exécuter le même jeu d’essais sur chaque modèle, conserver les sorties et documenter leur correction. Une réponse fluide ne prouve pas qu’elle est exacte.</p></div>
+    </section>
+
+    <section id="limites">
+      <h2>Comment lire les traces</h2>
+      <div class="grid">
+        <article class="card"><span class="tag">Traçabilité</span><h3>Ce que la trace établit</h3><p>Elle indique le modèle et sa révision Hugging Face, les paramètres de génération, le nombre de tokens, la durée, le temps CPU et une empreinte tronquée du prompt.</p></article>
+        <article class="card"><span class="tag external">Estimation</span><h3>Ce que l’énergie ne mesure pas</h3><p>Le VPS n’expose pas de compteur électrique matériel. L’estimation CPU utilise 10 à 20 W par cœur actif ; mémoire, réseau, consommation au repos, refroidissement et PUE ne sont pas mesurés.</p></article>
+        <article class="card"><span class="tag other">Explicabilité</span><h3>Une trace n’est pas le raisonnement du modèle</h3><p>Les métadonnées aident à reproduire une requête et à observer son coût. Elles ne révèlent pas les opérations internes qui ont conduit à la génération.</p></article>
+      </div>
+    </section>
+
+    <div class="source"><strong>Référence de méthode :</strong> <a href="https://eric2mangel.github.io/Analyses/LLM-locaux-2026-anglais/" target="_blank" rel="noopener noreferrer">« Et en anglais ? Les mêmes 9 LLM, les mêmes 30 questions » ↗</a>. Cette page en reprend l’idée d’une comparaison bilingue et de mesures séparées ; elle ne reproduit ni ses questions, ni ses résultats, ni ses textes. Les caractéristiques des modèles sont documentées dans leurs fiches Hugging Face liées plus haut.</div>
+  </main>
+  <footer><div class="wrap">Une expérimentation personnelle de Théophile Avenel · <a href="https://www.linkedin.com/in/theophile-avenel/">LinkedIn ↗</a> · <a href="mailto:slm-tavenel-tech@proton.me">Contact ↗</a> · <a href="https://slm.tavenel.tech/">Chat SLM-Tavenel ↗</a></div></footer>
+</body>
+</html>
+
