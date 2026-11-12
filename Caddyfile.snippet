@@ -47,6 +47,12 @@ slm.tavenel.tech {
 		root * /srv/www/slm-analysis
 		file_server
 	}
+	@analysisFrNoSlash path /Analyses/LLM-locaux-2026
+	redir @analysisFrNoSlash /Analyses/LLM-locaux-2026/ 308
+	handle /Analyses/LLM-locaux-2026/* {
+		root * /srv/www/slm-analysis
+		file_server
+	}
 	handle /jepa {
 		root * /srv/www/slm-privacy-ui
 		rewrite * /jepa.html
