@@ -41,6 +41,21 @@ http://localhost:3012 {
 slm.tavenel.tech {
 	encode gzip
 	header Strict-Transport-Security "max-age=31536000"
+	@analysisNoSlash path /Analyses/LLM-locaux-2026-anglais
+	redir @analysisNoSlash /Analyses/LLM-locaux-2026-anglais/ 308
+	handle /Analyses/LLM-locaux-2026-anglais/* {
+		root * /srv/www/slm-analysis
+		file_server
+	}
+	handle /jepa {
+		root * /srv/www/slm-privacy-ui
+		rewrite * /jepa.html
+		header Cache-Control "no-store"
+		file_server
+	}
+	handle /api/public/jepa/* {
+		reverse_proxy 127.0.0.1:3011
+	}
 	handle /static/loader.js {
 		root * /srv/www/slm-privacy-ui
 		rewrite * /loader.js
